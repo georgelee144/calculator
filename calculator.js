@@ -5,8 +5,8 @@ function evaluate_calulation(inputs) {
     currentDisplay.textContent = operationError;
     return null;
   } else {
-    inputs[0] = Number(inputs[0]);
-    inputs[2] = Number(inputs[2]);
+    inputs[0] = Number(inputs[0].replace(/\D/g, ""));
+    inputs[2] = Number(inputs[2].replace(/\D/g, ""));
   }
 
   if (inputs[1] === "+") {
@@ -22,6 +22,19 @@ function evaluate_calulation(inputs) {
   }
 }
 
+function cleanDisplay(displayStr) {
+  displayStr = String(displayStr);
+
+  if (displayStr[0] === "0") {
+    displayStr = displayStr.slice(1);
+  }
+
+  if (displayStr.length > 3) {
+    displayStr = Number(displayStr.replace(/\D/g, "")).toLocaleString("en-US");
+  }
+  return displayStr;
+}
+
 function calulateFunc(event) {
   console.log(event);
 
@@ -32,10 +45,7 @@ function calulateFunc(event) {
     currentDisplay.textContent = currentDisplay.textContent.concat(
       event.target.innerText
     );
-
-    if (currentDisplay.textContent[0] === "0") {
-      currentDisplay.textContent = currentDisplay.textContent.slice(1);
-    }
+    currentDisplay.textContent = cleanDisplay(currentDisplay.textContent);
   } else if (event.target.id === "clear") {
     currentDisplay.textContent = "0";
     clearCounter += 1;
@@ -57,7 +67,7 @@ function calulateFunc(event) {
     if (inputs.length === 1 && lastOperation.length === 2) {
       inputs = inputs.concat(lastOperation);
     }
-    currentDisplay.textContent = evaluate_calulation(inputs);
+    currentDisplay.textContent = cleanDisplay(evaluate_calulation(inputs));
     inputs = [];
   } else if (event.target.className.includes("math-operation")) {
     if (mathOperations.includes(inputs[-1])) {
@@ -68,17 +78,6 @@ function calulateFunc(event) {
       currentDisplay.textContent = "0";
     }
   }
-
-  // if (mathOperations.includes(inputs[-2])) {
-  //   answer = evaluate_calulation(inputs);
-  //   if (answer === null && current_display.textContent != operationError) {
-  //     current_display.textContent = "Something went wrong";
-  //   }
-  //   current_display.textContent = answer;
-  //   inputs = [];
-  //   inputs[0] = answer;
-  // }
-  // current_display.textContent = "0";
 }
 
 let currentDisplay = document.querySelector(".display");
