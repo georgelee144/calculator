@@ -1,0 +1,111 @@
+.gray-button {
+  background-color: lightgray;
+}
+
+.orange-button {
+  background-color: orange;
+  color: white;
+}
+.display {
+  grid-area: display;
+  background-color: black;
+  color: white;
+  text-align: right;
+  margin: 0;
+  vertical-align: middle;
+}
+
+button {
+  font-size: 50px;
+}
+.clear {
+  grid-area: clear;
+}
+
+.backspace {
+  grid-area: backspace;
+}
+
+.divison {
+  grid-area: divison;
+}
+
+.seven {
+  grid-area: seven;
+}
+
+.eight {
+  grid-area: eight;
+}
+
+.nine {
+  grid-area: nine;
+}
+
+.multiply {
+  grid-area: op_multiply;
+}
+
+.four {
+  grid-area: four;
+}
+
+.five {
+  grid-area: five;
+}
+
+.six {
+  grid-area: six;
+}
+
+.subtract {
+  grid-area: subtract;
+}
+
+.three {
+  grid-area: three;
+}
+
+.two {
+  grid-area: two;
+}
+
+.one {
+  grid-area: one;
+}
+
+.addition {
+  grid-area: addition;
+}
+
+.zero {
+  grid-area: num_zero;
+}
+.equals {
+  grid-area: equals;
+}
+
+.click-buttons-grid {
+  display: grid;
+  row-gap: 0px;
+  column-gap: 0px;
+  grid-template-areas:
+    "display display display display"
+    "clear clear backspace divison"
+    "seven eight nine op_multiply"
+    "four five six subtract"
+    "three two one addition"
+    "num_zero num_zero num_zero equals";
+  grid-auto-rows: 100px;
+  grid-auto-columns: 100px;
+
+  /* width: 350px;
+  height: 500px; */
+  /* width: 30%; */
+}
+
+#calculator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
